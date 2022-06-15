@@ -1,11 +1,14 @@
 const assert = require("assert");
 const { When, Then } = require("@cucumber/cucumber");
 
+// This variable would be used to hold the response obtained.
+// Hence it is declared here
 let response;
 
 When(
   "the user sends a request to apify with name {string}",
   async function (customName) {
+    // making a get request with query params and storing the response
     response = await context.get("", {
       params: {
         name: customName,
@@ -17,6 +20,7 @@ When(
 When(
   "the user sends a request to apify with name {string} and country id {string}",
   async function (customName, countryId) {
+    // making a get request with query params and storing the response
     response = await context.get("", {
       params: {
         name: customName,
@@ -27,6 +31,7 @@ When(
 );
 
 Then("the response code should be {string}", async function (statusCode) {
+  // check whether the status code of the response and the desired status code are same
   assert.equal(
     response.status(),
     statusCode,
@@ -59,6 +64,8 @@ Then(
   "the response body should contain country id {string}",
   async function (countryId) {
     const response_country_id = (await response.json()).country_id;
+
+    // checking that the response has the same country id which was in the request
     assert.equal(
       response_country_id,
       countryId,

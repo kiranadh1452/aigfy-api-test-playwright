@@ -1,12 +1,6 @@
 const { chromium } = require("playwright");
 const { request, expect } = require("@playwright/test");
-const {
-  Before,
-  After,
-  BeforeAll,
-  AfterAll,
-  setDefaultTimeout,
-} = require("@cucumber/cucumber");
+const { BeforeAll, setDefaultTimeout } = require("@cucumber/cucumber");
 
 setDefaultTimeout(1000 * 1000);
 
