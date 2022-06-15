@@ -1,2 +1,4 @@
-package-lock.json
+# Github actions in this repo uses `npm ci` command due to which it requires the package-lock.json file to be present
+# package-lock.json
+
 node_modules
