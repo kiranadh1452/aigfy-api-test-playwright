@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -18,6 +19,11 @@ jobs:
         with:
           node-version: 14.x
 
+      - name: Show secret
+        env:
+          BASE_URL: ${{ secrets.AGIFY_URL }}
+        run: node show.js
+        
       - name: Install Dependencies
         run: npm ci
 
