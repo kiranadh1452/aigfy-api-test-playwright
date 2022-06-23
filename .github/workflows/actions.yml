@@ -8,7 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      DATA_KIRAN: "kiran_adh"
+      BASE_URL: ${{ secrets.AGIFY_URL }}
     steps:
 
       - name: Checkout code
@@ -20,12 +22,14 @@ jobs:
           node-version: 14.x
 
       - name: Show secret
-        env:
-          BASE_URL: ${{ secrets.AGIFY_URL }}
-        run: node show.js
+        run: |
+          node show.js
+          node alert.js
         
       - name: Install Dependencies
         run: npm ci
 
       - name: Run tests
-        run: npm run test:api
+        run: |
+          node alert.js
+          npm run test:api
